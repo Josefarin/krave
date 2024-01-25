@@ -1,12 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head><script src="saludo.js"></script></head>
+<head>
+    <script src="utilitarios.js"></script>
+    <script src="saludo.js"></script>
+</head>
 <body>
     <h3>Nombre</h3>
     <input type="text" id="txnom">
-    <h3>apellido</h3>
+    <h3>Apellido</h3>
     <input type="text" id="txape">
+    <h3>Edad</h3>
+    <input type="text" id="txeda">
+    <h3>Estatura</h3>
+    <input type="text" id="txesta">
+    <img width="200" id="imsalud">
     <input type="button" value="saludar" onclick="salud();">
-    
+    <h3>Resultado</h3>
+    <h3 id="lbresultados"></h3>
 </body>
 </html>
