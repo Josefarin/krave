@@ -4,13 +4,14 @@ jugar = function () {
 
     cambiarTexto("lblNumero", resultadoDado);
 
+    let mensaje;
     if (resultadoDado > 3) {
-        console.log("es mayor a 3");
-        console.log("ganaste");
+        mensaje = "es mayor a 3. Ganaste!";
     } else {
-        console.log("es menor a 3");
-        console.log("perdiste");
+        mensaje = "es menor a 3. Perdiste.";
     }
+
+    cambiarTexto("mensajeResultado", mensaje);
 }
 lanzarDado=function(){
     let alea; let numMu; let numE; let vale;
