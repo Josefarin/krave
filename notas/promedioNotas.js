@@ -1,5 +1,4 @@
 function calcularPromedioNotas() {
-    
     let nota1 = recuperarFlotante("nota1");
     let nota2 = recuperarFlotante("nota2");
     let nota3 = recuperarFlotante("nota3");
@@ -9,16 +8,28 @@ function calcularPromedioNotas() {
 }
 
 function mostrarImagenResultado(promedio) {
-    let imagenExito = document.getElementById("imagenExito");
-    let imagenFracaso = document.getElementById("imagenFracaso");
+    let imagenReprobado = document.getElementById("imagenReprobado");
+    let imagenBuenTrabajo = document.getElementById("imagenBuenTrabajo");
+    let imagenExcelente = document.getElementById("imagenExcelente");
+    let imagenDatoIncorrecto = document.getElementById("imagenDatoIncorrecto");
     let divImagenResultado = document.getElementById("imagenResultado");
-    imagenExito.style.display = "none";
-    imagenFracaso.style.display = "none";
-    if (promedio > 7) {
-        imagenExito.style.display = "block";
-        divImagenResultado.innerText = "¡Felicidades! Has tenido éxito.";
+
+    imagenReprobado.style.display = "none";
+    imagenBuenTrabajo.style.display = "none";
+    imagenExcelente.style.display = "none";
+    imagenDatoIncorrecto.style.display = "none";
+
+    if (promedio < 5 && promedio > 0) {
+        imagenReprobado.style.display = "block";
+        divImagenResultado.innerText = "Reprobado.";
+    } else if (5 <= promedio && promedio <= 8) {
+        imagenBuenTrabajo.style.display = "block";
+        divImagenResultado.innerText = "¡Buen trabajo!";
+    } else if (promedio > 8 && promedio <= 10) {
+        imagenExcelente.style.display = "block";
+        divImagenResultado.innerText = "¡Excelente!";
     } else {
-        imagenFracaso.style.display = "block";
-        divImagenResultado.innerText = "Lo siento, no has alcanzado el promedio deseado.";
+        imagenDatoIncorrecto.style.display = "block";
+        divImagenResultado.innerText = "Dato incorrecto. Verifica las notas.";
     }
 }
