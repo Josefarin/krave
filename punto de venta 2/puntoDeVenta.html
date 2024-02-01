@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <script src="utilitarios.js"></script>
+    <script src="serviciosPuntoDeVenta.js"></script>
+    <script src="puntoDeVenta.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="imagen" class="centrado">
+            <img src="logoKrakeDev.png" width="300" id="imagenTitulo">
+        </div>
+        <div id="contenido" class="centrado">
+            <div id="formulario" alt="PUNTO DE VENTA">
+                <h3>PUNTO DE VENTA</h3>
+                <div class="campo">
+                    <label for="txtProducto">Producto:</label>
+                    <input type="text" id="txtProducto" />
+                </div>
+                <div class="campo">
+                    <label for="txtCantidad">Cantidad:</label>
+                    <input type="text" id="txtCantidad" />
+                </div>
+                <div class="campo">
+                    <label for="txtPrecio">Precio:</label>
+                    <input type="text" id="txtPrecio" />
+                </div>
+                <div class="botones">
+                    <input type="button" class="calcularBtn" value=" TOTAL " id="calcularBtn" />
+                    <input type="button" class="limpiarBtn" value="LIMPIAR" id="limpiarBtn" />
+                </div>
+            </div>
+        </div>
+        <div id="resultados" class="centrado">
+            <h3>Subtotal: <span id="lblSubtotal">0.0</span></h3>
+            <h3>Descuento: <span id="lblDescuento">0.0</span></h3>
+            <h3>IVA 12%: <span id="lblValorIVA">0.0</span></h3>
+            <h3>Total: <span id="lblTotal">0.0</span></h3>
+        </div>
+    </div>
+
+    <script src="puntoDeVenta.js"></script>
+</body>
+
+</html>
+
+

@@ -1,0 +1,62 @@
+
+body {
+    margin: 0;
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.centrado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.campo label {
+    margin-right: 10px;
+    width: 80px; 
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="text"],
+input[type="button"] {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.calcularBtn {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+.limpiarBtn {
+    background-color: #ff9800;
+    color: white;
+    cursor: pointer;
+}
+
+
+#resultados {
+    text-align: left;
+}
