@@ -1,0 +1,71 @@
+body {
+    background-color: #f0f0f0; /* Fondo gris claro */
+}
+
+.contenedor {
+    display: flex;
+    padding: 20px;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.centro,
+.derecha {
+    background-color: #ffffff; /* Fondo blanco para ambos lados */
+    padding: 20px;
+    border: 1px solid #ccc; /* Borde gris claro */
+}
+
+.vertical-text {
+    writing-mode: vertical-rl; /* Texto vertical */
+    transform: rotate(180deg);
+}
+
+.vertical-text div {
+    margin-bottom: 10px; /* Espacio entre los elementos verticales */
+}
+
+img {
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#resultadoLabel {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#tipoVehiculoTexto {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    margin-right: 10px; /* Agregar espacio entre elementos verticales */
+}
