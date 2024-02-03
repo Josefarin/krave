@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="placas.css">
+    <script src="utilitarios.js"></script>
+    <script src="utilitarioscadena.js"></script>
+    <script src="servicioplaca.js"></script>
+    <script src="placas.js"></script>
+    <title>Validación de Placas</title>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="centro">
+            <label for="placaInput"><H1>Ingrese la placa</H1></label>
+            <input type="text" id="placaInput" placeholder="ABC-123" />
+            <P></P>
+            <button onclick="validarPlaca()">Validar</button>
+        
+            <button onclick="limpiar()">Limpiar</button>
+        </div>
+        <div class="derecha">
+          <H2><label id="resultadoLabel"></label>
+            <p id="provinciaTexto"></p>
+            <p id="tipoVehiculoTexto"></p>
+            <p id="diaPicoPlacaTexto"></p></H2>  
+        </div>
+    </div>
+</body>
+</html>
