@@ -32,6 +32,3 @@ const utilitarios = {
     },
 };
 
-// Utilizar estas funciones:
-// utilitarios.recuperarTexto('miInput');
-// utilitarios.cambiarTexto('miDiv', 'Nuevo mensaje');
