@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="juego.css">
+    <script src="serviciojuego.js" defer></script>
+    <script src="juegos.js" defer></script>
+    <title>Juega Piedra, Papel o Tijera</title>
+</head>
+<body>
+    <h1>Juega Piedra, Papel o Tijera</h1>
+
+    <div id="opcionesJuego">
+        <img src="img/piedra.png" width="100" alt="Piedra" onclick="jugar('piedra')">
+        <img src="img/papel.png" width="50" alt="Papel" onclick="jugar('papel')">
+        <img src="img/tijera.png" width="50" alt="Tijera" onclick="jugar('tijera')">
+    </div>
+
+    <img  src="img/usuario.png" id="imagenComputadora" alt="Imagen Computadora">
+
+    <p id="resultado"></p>
+    <p>Puntos Usuario: <span id="puntosUsuario">0</span></p>
+    <p>Puntos Computadora: <span id="puntosComputadora">0</span></p>
+    <button onclick="nuevaPartida()">Nueva Partida</button>
+</body>
+
+</html>

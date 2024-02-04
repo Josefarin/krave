@@ -1,0 +1,38 @@
+/* juego.css */
+
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f0f0f0; /* Fondo neutro */
+}
+
+h1 {
+    color: #333;
+}
+
+img {
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 10px; /* Añade bordes redondeados */
+}
+
+#imagenComputadora {
+    max-width: 200px; /* Tamaño máximo para la imagen de la computadora */
+    margin: 20px auto; /* Centra la imagen de la computadora */
+}
+
+#opcionesJuego {
+    display: flex;
+    justify-content: center;
+}
+
+#opcionesJuego img {
+    margin: 0 10px; /* Espaciado entre las opciones */
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+}
