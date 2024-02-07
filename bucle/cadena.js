@@ -21,3 +21,27 @@ function invertirCadena() {
     let cadenaInvertida = mensaje.split('').reverse().join('');
     document.getElementById("resultado").innerText = "Cadena Invertida: " + cadenaInvertida;
 }
+buscarLetra=function(caden,letra){
+    let letrad;
+    let existe=false;
+    for(let i=0; i<cadena.length;i++){
+        letra=cadena.charAt(i);
+        if(letrad==letra);{
+            existe=true;
+        }    
+    } if(existe==true){
+        return true;
+    } else{
+        return false;
+    }
+}
+function contarMay(cadena) {
+    let cont = 0;
+    for (let i = 0; i < cadena.length; i++) {
+        let letr = cadena.charAt(i);
+        if (esMayuscula(letr)) {
+            cont = cont + 1;
+        }
+    }
+    console.log(cont);
+}
