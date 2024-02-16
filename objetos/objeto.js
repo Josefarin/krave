@@ -43,3 +43,43 @@ function crearProducto() {
         console.log("Ambos productos tienen el mismo stock.");
     }
 }
+function modificarArt(){
+    let cuenta= {
+        Numero:'4855552',
+        saldo:'0.0',
+ }
+cuenta.saldo=100;
+cuenta.saldo+=10;
+    console.log(cuenta.saldo);
+}
+function creaClient(){
+    let clie= {
+        cedula:"1552478",
+        nombre:"juan",
+ }
+let clie1={};
+clie1.nombre="roman";
+clie1.apellido="jerardo";
+clie1.cedula="5226";
+}
+function prbarIncr(){
+    let cta={Numero:"256798",saldo:244.2}
+    incresaldo(cta,100);
+    console.log(cta.saldo);
+}
+function proMay(){
+    let per1={nombre:"manu",edad:45};
+    let per2={nombre:"lau",edad:41};
+    let mayor;
+    mayor=deterMayu(per1,per2);
+    if(mayor!=null){console.log("el mayor es "+mayor.nombre)}
+}
+
+function incresaldo(cuenta,monto){
+cuenta.saldo+=monto;
+}
+
+function deterMayu(persoina1,persona2){
+if(persoina1.edad>persona2.edad){return persoina1;}else if(persona2.edad>persoina1.edad){
+return persona2;}else{return null}
+}
