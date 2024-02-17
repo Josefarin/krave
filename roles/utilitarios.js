@@ -1,5 +1,5 @@
-let isNuevo = false;
 
+let isNuevo = false;
 mostrarImagen=function(idComponente,rutaImagen){
     let componente;
     componente=document.getElementById(idComponente);
@@ -36,12 +36,12 @@ recuperarFloat = function(idComponente){
     return valorFlotante;
  }
 
-mostrarComponente = function(idComponente){
-    document.getElementById(idComponente).style.display = "block";
+ function ocultarComponente(idComponente) {
+    document.getElementById(idComponente).style.display = "none";
 }
 
-ocultarComponente = function(idComponente){
-    document.getElementById(idComponente).style.display = "none";
+function mostrarComponente(idComponente) {
+    document.getElementById(idComponente).style.display = "block";
 }
 
 deshabilitarComponente = function(idComponente){
@@ -147,23 +147,60 @@ function guardar() {
     if (!validarSueldo(sueldo)) {
         mostrarMensajeError(document.getElementById('txtSueldo'), 'El sueldo debe ser un número flotante entre 400 y 500.');
     }
-
     if (validarCedula(cedula) && validarNombreApellido(nombre) && validarNombreApellido(apellido) && validarSueldo(sueldo)) {
         if (isNuevo) {
             const nuevoEmpleado = { cedula, nombre, apellido, sueldo: parseFloat(sueldo) };
             const guardado = agregarEmpleado(nuevoEmpleado);
-
             if (guardado) {
                 alert('Empleado guardado correctamente');
                 mostrarEmpleados();
+                deshabilitarComponentes();
+                isNuevo = false;
             } else {
                 alert('Ya existe un empleado con la misma cédula');
             }
+        } else {
+            const empleadoExistente = buscarEmpleado(cedula);
+            if (empleadoExistente) {
+                empleadoExistente.nombre = nombre;
+                empleadoExistente.apellido = apellido;
+                empleadoExistente.sueldo = parseFloat(sueldo);
+                alert('Empleado modificado exitosamente');
+                mostrarEmpleados();
+                deshabilitarComponentes();
+            } else {
+                alert('Error al modificar el empleado');
+            }
         }
-
-        deshabilitarComponentes();
-        isNuevo = false;
     } else {
         alert('Por favor, complete todos los campos correctamente.');
     }
 }
+
+function ejecutarBusqueda() {
+    const cedulaBusqueda = document.getElementById('txtBusquedaCedula').value;
+    const empleadoEncontrado = buscarEmpleado(cedulaBusqueda);
+
+    if (empleadoEncontrado) {
+        document.getElementById('txtCedula').value = empleadoEncontrado.cedula;
+        document.getElementById('txtNombre').value = empleadoEncontrado.nombre;
+        document.getElementById('txtApellido').value = empleadoEncontrado.apellido;
+        document.getElementById('txtSueldo').value = empleadoEncontrado.sueldo;
+        document.getElementById('txtNombre').disabled = false;
+        document.getElementById('txtApellido').disabled = false;
+        document.getElementById('txtSueldo').disabled = false;
+        document.getElementById('txtCedula').disabled = true;
+    } else {
+        alert('Empleado no existe');
+    }
+}
+
+function limpiar() {
+    document.getElementById('txtCedula').value = '';
+    document.getElementById('txtNombre').value = '';
+    document.getElementById('txtApellido').value = '';
+    document.getElementById('txtSueldo').value = '';
+    isNuevo = false;
+    deshabilitarComponentes();
+}
+

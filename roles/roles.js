@@ -13,19 +13,26 @@ function mostrarOpcionEmpleado() {
     mostrarComponente('divEmpleado');
 }
 
+
+function mostrarOpcionEmpleado() {
+    ocultarComponente('divRol');
+    ocultarComponente('divResumen');
+    mostrarComponente('divEmpleado');
+    mostrarEmpleados();
+}
+  
 function mostrarOpcionRol() {
     ocultarComponente('divEmpleado');
     ocultarComponente('divResumen');
     mostrarComponente('divRol');
 }
-
+    
 function mostrarOpcionResumen() {
     ocultarComponente('divEmpleado');
     ocultarComponente('divRol');
     mostrarComponente('divResumen');
 }
-
-
+    
 function mostrarEmpleados() {
     const tablaEmpleados = document.getElementById('tablaEmpleados');
     if (tablaEmpleados) {
@@ -39,9 +46,5 @@ function mostrarEmpleados() {
         tablaEmpleados.innerHTML = tablaHTML;
     }
 }
-
-function mostrarOpcionEmpleado() {
-    ocultarComponente('divRol');
-    ocultarComponente('divResumen');
-    mostrarComponente('divEmpleado');
-    mostrarEmpleados(); }
+ mostrarOpcionEmpleado();
+    
