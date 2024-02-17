@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-    
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+
 <head>
-    <link rel="stylesheet" type="text/css" href="roles.css">
-    <script src="roles.js"></script>
-    <script src="utilitarios.js"></script>
+
 </head>
-<body onload="mostrarOpcionEmpleado(); deshabilitarComponentes()">
+
+<body>
     <div class="menu">
         <div class="contenedorBoton">
-            <input type="button" value="EMPLEADO" class="estiloBoton" onclick="mostrarOpcionEmpleado()" />
+            <input type="button" value="EMPLEADO" class="estiloBoton" />
         </div>
         <div class="contenedorBoton">
-            <input type="button" value="ROL" class="estiloBoton" onclick="mostrarOpcionRol()" />
+            <input type="button" value="ROL" class="estiloBoton"/>
         </div>
         <div class="contenedorBoton">
-            <input type="button" value="RESUMEN" class="estiloBoton" onclick="mostrarOpcionResumen()" />
+            <input type="button" value="RESUMEN" class="estiloBoton" />
         </div>
+
     </div>
-    <div id="divEmpleado" class="contenido">
+    <div id="divEmpleado">
         <div class="principal">
             <div class="area">
                 <div class="ingresoDatos">
@@ -54,7 +42,7 @@
                     </div>
                     <div>
                         <input type="text" class="cajaTexto" id="txtCedula" />
-                        <div class="error" id="txtCedulaError"></div>
+                        <div class="error" id="lblErrorCedula"></div>
                     </div>
                 </div>
                 <div class="ingresoDatos">
@@ -63,7 +51,7 @@
                     </div>
                     <div>
                         <input type="text" class="cajaTexto" id="txtNombre" />
-                        <div class="error" id="txtNombreError"></div>
+                        <div class="error" id="lblErrorNombre"></div>
                     </div>
                 </div>
                 <div class="ingresoDatos">
@@ -72,7 +60,7 @@
                     </div>
                     <div>
                         <input type="text" class="cajaTexto" id="txtApellido" />
-                        <div class="error" id="txtApellidoError"></div>
+                        <div class="error" id="lblErrorApellido"></div>
                     </div>
                 </div>
                 <div class="ingresoDatos">
@@ -81,16 +69,16 @@
                     </div>
                     <div>
                         <input type="text" class="cajaTexto" id="txtSueldo" />
-                        <div class="error" id="txtSueldoError"></div>
+                        <div class="error" id="lblErrorSueldo"></div>
                     </div>
                 </div>
                 <div class="botones">
                     <div class="contenedorBoton">
-                        <input type="button" value="NUEVO" class="estiloBoton" onclick="ejecutarNuevo()" />
+                        <input type="button" value="NUEVO" class="estiloBoton"  />
                     </div>
-                        <div class="contenedorBoton">
-                         <input type="button" value="GUARDAR" class="estiloBoton" onclick="guardar()" />
-                        </div>
+                    <div class="contenedorBoton">
+                        <input type="button" value="GUARDAR" class="estiloBoton" id="btnGuardar" />
+                    </div>
                     <div class="contenedorBoton">
                         <input type="button" value="LIMPIAR" class="estiloBoton"  />
                     </div>
@@ -100,11 +88,11 @@
                 </div>
             </div>
             <div class="logoEscuela">
-                <img src="./imagenes/cli.png" width="80%" />
+                <img src="./imagenes/logoKrakeDev.png" width="80%" />
             </div>
         </div>
     </div>
-    <div id="divRol" class="contenido">
+    <div id="divRol">
         <div class="principal">
             <div class="area">
                 <div class="ingresoDatos">
@@ -113,7 +101,7 @@
                     </div>
                     <div>
                         <input type="text" class="cajaTexto" id="txtBusquedaCedulaRol" />
-                        <div class="error" id="txtCedulaError"></div>
+                        <div class="error" id="lblErrorBusqueda"></div>
                     </div>
                 </div>
                 <div class="contenedorBoton">
@@ -178,20 +166,19 @@
                 </div>
                 <div class="botones">
                     <div class="contenedorBoton">
-                   <input type="button" value="GUARDAR" class="estiloBoton" onclick="guardar()" />
+                        <input type="button" value="GUARDAR" class="estiloBoton" />
                     </div>
-
                 </div>
             </div>
             <div class="logoEscuela">
-                <img src="./imagenes/rol.png" width="80%" />
+                <img src="./imagenes/logoKrakeDev.png" width="80%" />
             </div>
         </div>
     </div>
-    <div id="divResumen" class="contenido">
+    <div id="divResumen">
         <div class="principal">
             <div class="area">
-            
+              
             </div>
             <div class="area">
                 <div id="tablaResumen" class="areaTabla">
@@ -223,11 +210,10 @@
                 </div>
             </div>
             <div class="logoEscuela">
-                <img src="./imagenes/resu.png" width="80%" />
+                <img src="./imagenes/logoKrakeDev.png" width="80%" />
             </div>
         </div>
     </div>
- 
 </body>
 
 </html>

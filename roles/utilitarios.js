@@ -1,3 +1,4 @@
+let isNuevo = false;
 
 mostrarImagen=function(idComponente,rutaImagen){
     let componente;
@@ -61,5 +62,108 @@ function mostrarEmpleados() {
             ).join('') +
             '</table>';
         tablaEmpleados.innerHTML = tablaHTML;
+    }
+}
+
+function habilitarComponentes() {
+    document.getElementById('txtCedula').disabled = false;
+    document.getElementById('txtNombre').disabled = false;
+    document.getElementById('txtApellido').disabled = false;
+    document.getElementById('txtSueldo').disabled = false;
+    document.getElementById('btnGuardar').disabled = false;
+}
+
+function deshabilitarComponentes() {
+    document.getElementById('txtCedula').disabled = true;
+    document.getElementById('txtNombre').disabled = true;
+    document.getElementById('txtApellido').disabled = true;
+    document.getElementById('txtSueldo').disabled = true;
+    document.getElementById('btnGuardar').disabled = true;
+}
+
+function ejecutarNuevo() {
+    isNuevo = true;
+    habilitarComponentes();
+}
+
+function buscarEmpleado(cedula) {
+    return empleados.find(empleado => empleado.cedula === cedula) || null;
+}
+
+function agregarEmpleado(empleado) {
+    if (!buscarEmpleado(empleado.cedula)) {
+        empleados.push(empleado);
+        return true;
+    }
+    return false;
+}
+
+function validarCedula(cedula) {
+    const regexCedula = /^\d{10}$/;
+    return regexCedula.test(cedula);
+}
+
+function validarNombreApellido(nombre) {
+    const regexNombreApellido = /^[A-Z]{3,}$/;
+    return regexNombreApellido.test(nombre);
+}
+
+function validarSueldo(sueldo) {
+    const regexSueldo = /^([4-4]\d{2}|500)(\.\d+)?$/;
+    return regexSueldo.test(sueldo);
+}
+function mostrarMensajeError(elemento, mensaje) {
+    const mensajeError = document.getElementById(elemento.id + 'Error');
+    if (mensajeError) {
+        mensajeError.textContent = mensaje;
+    }
+}
+
+function limpiarMensajesError() {
+    const mensajesError = document.querySelectorAll('.error');
+    mensajesError.forEach(mensajeError => mensajeError.textContent = '');
+}
+
+function guardar() {
+    limpiarMensajesError();
+
+    const cedula = document.getElementById('txtCedula').value;
+    const nombre = document.getElementById('txtNombre').value;
+    const apellido = document.getElementById('txtApellido').value;
+    const sueldo = document.getElementById('txtSueldo').value;
+
+    if (!validarCedula(cedula)) {
+        mostrarMensajeError(document.getElementById('txtCedula'), 'La cédula debe tener 10 dígitos.');
+    }
+
+    if (!validarNombreApellido(nombre)) {
+        mostrarMensajeError(document.getElementById('txtNombre'), 'El nombre debe tener al menos tres letras mayúsculas.');
+    }
+
+    if (!validarNombreApellido(apellido)) {
+        mostrarMensajeError(document.getElementById('txtApellido'), 'El apellido debe tener al menos tres letras mayúsculas.');
+    }
+
+    if (!validarSueldo(sueldo)) {
+        mostrarMensajeError(document.getElementById('txtSueldo'), 'El sueldo debe ser un número flotante entre 400 y 500.');
+    }
+
+    if (validarCedula(cedula) && validarNombreApellido(nombre) && validarNombreApellido(apellido) && validarSueldo(sueldo)) {
+        if (isNuevo) {
+            const nuevoEmpleado = { cedula, nombre, apellido, sueldo: parseFloat(sueldo) };
+            const guardado = agregarEmpleado(nuevoEmpleado);
+
+            if (guardado) {
+                alert('Empleado guardado correctamente');
+                mostrarEmpleados();
+            } else {
+                alert('Ya existe un empleado con la misma cédula');
+            }
+        }
+
+        deshabilitarComponentes();
+        isNuevo = false;
+    } else {
+        alert('Por favor, complete todos los campos correctamente.');
     }
 }
