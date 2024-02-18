@@ -87,8 +87,21 @@ function ejecutarNuevo() {
 }
 
 function buscarEmpleado(cedula) {
-    return empleados.find(empleado => empleado.cedula === cedula) || null;
+    const empleadoEncontrado = empleados.find(empleado => empleado.cedula === cedula) || null;
+
+    if (empleadoEncontrado) {
+        document.getElementById('infoCedula').innerText = `${empleadoEncontrado.cedula}`;
+        document.getElementById('infoNombre').innerText = ` ${empleadoEncontrado.nombre}`;
+        document.getElementById('infoSueldo').innerText = ` ${empleadoEncontrado.sueldo}`;
+  
+    } else {
+        alert('Empleado no existe');
+        
+    }
+
+    return empleadoEncontrado;
 }
+
 
 function agregarEmpleado(empleado) {
     if (!buscarEmpleado(empleado.cedula)) {
@@ -137,11 +150,11 @@ function guardar() {
     }
 
     if (!validarNombreApellido(nombre)) {
-        mostrarMensajeError(document.getElementById('txtNombre'), 'El nombre debe tener al menos tres letras mayúsculas.');
+        mostrarMensajeError(document.getElementById('txtNombre'), 'Deve ser solo mayúsculas.');
     }
 
     if (!validarNombreApellido(apellido)) {
-        mostrarMensajeError(document.getElementById('txtApellido'), 'El apellido debe tener al menos tres letras mayúsculas.');
+        mostrarMensajeError(document.getElementById('txtApellido'), 'Deve ser solo mayúsculas.');
     }
 
     if (!validarSueldo(sueldo)) {

@@ -7,12 +7,6 @@ let empleados = [
 
 module.exports = empleados;
 
-function mostrarOpcionEmpleado() {
-    ocultarComponente('divRol');
-    ocultarComponente('divResumen');
-    mostrarComponente('divEmpleado');
-}
-
 
 function mostrarOpcionEmpleado() {
     ocultarComponente('divRol');
@@ -21,6 +15,14 @@ function mostrarOpcionEmpleado() {
     mostrarEmpleados();
 }
   
+function agregarEmpleado(empleado) {
+    if (!buscarEmpleado(empleado.cedula)) {
+        empleados.push(empleado);
+        return true;
+    }
+    return false;
+}
+
 function mostrarOpcionRol() {
     ocultarComponente('divEmpleado');
     ocultarComponente('divResumen');
@@ -46,5 +48,24 @@ function mostrarEmpleados() {
         tablaEmpleados.innerHTML = tablaHTML;
     }
 }
+function deshabilitarComponente(idComponente) {
+    const componente = document.getElementById(idComponente);
+    if (componente) {
+        componente.disabled = true;
+    }
+}
  mostrarOpcionEmpleado();
-    
+ 
+ function buscarEmpleado(cedula) {
+    const empleadoEncontrado = empleados.find(empleado => empleado.cedula === cedula) || null;
+
+    if (empleadoEncontrado) {
+        document.getElementById('infoCedula').innerText = ` ${empleadoEncontrado.cedula}`;
+        document.getElementById('infoNombre').innerText = ` ${empleadoEncontrado.nombre}`;
+        document.getElementById('infoSueldo').innerText = `${empleadoEncontrado.sueldo}`;
+    } else {
+        alert('Empleado no existe');
+    }
+
+    return empleadoEncontrado;
+}
