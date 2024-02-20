@@ -1,9 +1,10 @@
 
 let isNuevo = false;
+
 mostrarImagen=function(idComponente,rutaImagen){
     let componente;
     componente=document.getElementById(idComponente);
-    componente.src =  rutaImagen;
+    componente.src = rutaImagen;
 }
 mostrarTexto=function(idComponente,mensaje){
     let componente;
@@ -17,11 +18,12 @@ mostrarTextoEnCaja = function(idComponente,mensaje){
 }
 
 recuperarTexto=function(idComponente){
-    let componente;
+    let componente= document.getElementById(idComponente);
     let valorIngresado;
     componente=document.getElementById(idComponente);
-    valorIngresado=componente.value;
-    return valorIngresado;
+  
+    return componente ? componente.value : '',valorIngresado;
+
 }
 
 recuperarInt = function(idComponente){
@@ -44,8 +46,13 @@ function mostrarComponente(idComponente) {
     document.getElementById(idComponente).style.display = "block";
 }
 
-deshabilitarComponente = function(idComponente){
-    document.getElementById(idComponente).disabled = true;
+function deshabilitarComponente(idComponente) {
+    const componente = document.getElementById(idComponente);
+    if (componente) {
+        componente.disabled = true;
+    } else {
+        console.error(`El elemento con ID ${idComponente} no se encontró.`);
+    }
 }
 
 habilitarComponente = function(idComponente){
@@ -71,6 +78,7 @@ function habilitarComponentes() {
     document.getElementById('txtApellido').disabled = false;
     document.getElementById('txtSueldo').disabled = false;
     document.getElementById('btnGuardar').disabled = false;
+
 }
 
 function deshabilitarComponentes() {
@@ -78,7 +86,7 @@ function deshabilitarComponentes() {
     document.getElementById('txtNombre').disabled = true;
     document.getElementById('txtApellido').disabled = true;
     document.getElementById('txtSueldo').disabled = true;
-    document.getElementById('btnGuardar').disabled = true;
+    
 }
 
 function ejecutarNuevo() {
@@ -100,10 +108,7 @@ function buscarEmpleado(cedula) {
     }
 
     return empleadoEncontrado;
-}
-
-
-function agregarEmpleado(empleado) {
+}function agregarEmpleado(empleado) {
     if (!buscarEmpleado(empleado.cedula)) {
         empleados.push(empleado);
         return true;
@@ -216,4 +221,46 @@ function limpiar() {
     isNuevo = false;
     deshabilitarComponentes();
 }
+const descuento = recuperarFloat('txtDescuentos');
+
+function calcularYMostrarRol() {
+    const sueldo = recuperarFloatDiv('infoSueldo');
+    const descuento = recuperarFloat('txtDescuentos');
+
+    alert(`Sueldo: ${sueldo}, Descuento: ${descuento}`);
+
+    if (!isNaN(descuento) && descuento >= 0 && descuento <= sueldo) {
+       } else {
+        alert('Ingrese un descuento válido.');
+    }
+}
+function validarDescuento() {
+    const descuento = recuperarFloatDiv('txtDescuentos');
+
+    if (!isNaN(descuento) && descuento >= 0) {
+        mostrarMensajeError({ id: 'txtDescuentos' }, ''); 
+        return true;
+    } else {
+        mostrarMensajeError({ id: 'txtDescuentos' }, 'Ingrese un descuento válido.');
+        return false;
+    }
+}
+
+function calcularRol() {
+    const sueldoStr = recuperarTextoDiv('infoSueldo');
+    const descuentoStr = recuperarTextoDiv("txtDescuentos");
+
+    const sueldo = parseFloat(sueldoStr);
+    const descuento = recuperarFloat("txtDescuentos");
+
+    if (!isNaN(descuento) && descuento >= 0 && descuento <= sueldo) {
+        const aporteIESS = calcularAporteEmpleado(sueldo);
+        const valorPagar = calcularValorPagar(sueldo, aporteIESS, descuento);
+        document.getElementById('infoIESS').innerText = `Aporte IESS: ${aporteIESS.toFixed(2)}`;
+        document.getElementById('infoPago').innerText = `Total a Pagar: ${valorPagar.toFixed(2)}`;
+    } else {
+        alert('Ingrese un descuento válido.');
+    }
+}
+
 

@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="roles.css">
+    <script src="utilitarios.js"></script>
+    <script src="roles.js"></script>
     <style>
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-    
+
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
         }
     </style>
-<head>
-    <link rel="stylesheet" type="text/css" href="roles.css">
-    <script src="roles.js"></script>
-    <script src="utilitarios.js"></script>
 </head>
-<body onload="mostrarOpcionEmpleado(); deshabilitarComponentes()">
+<body onload="mostrarOpcionEmpleado(); deshabilitarComponentes();">
     <div class="menu">
         <div class="contenedorBoton">
             <input type="button" value="EMPLEADO" class="estiloBoton" onclick="mostrarOpcionEmpleado()" />
@@ -55,8 +57,7 @@
                         <input type="text" class="cajaTexto" id="txtCedula" />
                         <div class="error" id="txtCedulaError"></div>
                     </div>
-                </div>
-                BUSCAR
+                </div> 
                 <div class="ingresoDatos">
                     <div class="tituloCampo">
                         NOMBRE
@@ -100,11 +101,11 @@
                 </div>
             </div>
             <div class="logoEscuela">
-                <img src="./imagenes/cli.png" width="80%" />
+                <img src="./imagenes/clie.png" width="80%" />
             </div>
         </div>
     </div>
-    <div id="divRol" class="contenido">
+    <div id="divRol" class="contenido" >
         <div class="principal">
             <div class="area">
                 <div class="ingresoDatos">
@@ -117,10 +118,9 @@
                     </div>
                 </div>
                 <div class="contenedorBoton">
-                    <input type="button" value="BUSCAR" class="estiloBoton" onclick="buscarEmpleado(document.getElementById('txtBusquedaCedulaRol').value)" />
+                    <input type="button" value="BUSCAR" class="estiloBoton" onclick="buscarEmpleadoPorRol()" id="btnBuscarRol" />
                 </div>
             </div>
-
             <div class="area">
                 <div class="ingresoDatos">
                     <div class="tituloCampo">
@@ -157,8 +157,8 @@
                 </div>
                 <div class="botones">
                     <div class="contenedorBoton">
-                        <input type="button" value="CALCULAR" class="estiloBoton" />
-                    </div>
+                        <input type="button" value="CALCULAR" class="estiloBoton" onclick="calcularRol()" id="btnCalcularRol" />
+                     </div>  
                 </div>
                 <div class="ingresoDatos">
                     <div class="tituloCampo">
@@ -178,7 +178,7 @@
                 </div>
                 <div class="botones">
                     <div class="contenedorBoton">
-                   <input type="button" value="GUARDAR" class="estiloBoton" onclick="guardar()" />
+                   <input type="button" value="GUARDAR" class="estiloBoton" onclick="guardarRol()" id="btnGuardarRol" />
                     </div>
 
                 </div>
@@ -227,7 +227,5 @@
             </div>
         </div>
     </div>
- 
 </body>
-
 </html>

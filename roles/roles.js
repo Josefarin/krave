@@ -5,9 +5,6 @@ let empleados = [
     { cedula: "1234567890", nombre: "Nuevo", apellido: "Empleado", sueldo: 700.0 } 
 ];
 
-module.exports = empleados;
-
-
 function mostrarOpcionEmpleado() {
     ocultarComponente('divRol');
     ocultarComponente('divResumen');
@@ -54,18 +51,84 @@ function deshabilitarComponente(idComponente) {
         componente.disabled = true;
     }
 }
- mostrarOpcionEmpleado();
- 
- function buscarEmpleado(cedula) {
-    const empleadoEncontrado = empleados.find(empleado => empleado.cedula === cedula) || null;
+
+function recuperarFloatDiv(idComponente) {
+    const valorCaja = recuperarTextoDiv(idComponente).trim();
+    
+    if (!valorCaja) {
+        mostrarMensajeError({ id: idComponente }, 'Ingrese un valor.');
+        return NaN; 
+    }
+
+    const valorNumerico = parseFloat(valorCaja);
+
+    if (isNaN(valorNumerico)) {
+        mostrarMensajeError({ id: idComponente }, 'Ingrese un número válido.');
+        return NaN; 
+    } else {
+        mostrarMensajeError({ id: idComponente }, ''); 
+        return valorNumerico;
+    }
+}
+
+function recuperarIntDiv(idComponente) {
+    const valorCaja = recuperarTextoDiv(idComponente);
+    return parseInt(valorCaja);
+}
+
+function recuperarTextoDiv(idComponente) {
+    const componente = document.getElementById(idComponente);
+    return componente ? componente.textContent.trim() : '';
+}
+
+function calcularValorPagar(sueldo, aporteIESS, descuento) {
+    return sueldo - aporteIESS - descuento;
+}
+
+function calcularAporteEmpleado(sueldo) {
+    const porcentajeAporte = 9.45;
+    return (porcentajeAporte / 100) * sueldo;
+}
+
+function buscarEmpleadoPorRol() {
+    const cedulaBusqueda = document.getElementById('txtBusquedaCedulaRol').value;
+    const empleadoEncontrado = buscarEmpleado(cedulaBusqueda);
 
     if (empleadoEncontrado) {
-        document.getElementById('infoCedula').innerText = ` ${empleadoEncontrado.cedula}`;
-        document.getElementById('infoNombre').innerText = ` ${empleadoEncontrado.nombre}`;
+        document.getElementById('infoCedula').innerText = `${empleadoEncontrado.cedula}`;
+        document.getElementById('infoNombre').innerText = `${empleadoEncontrado.nombre} ${empleadoEncontrado.apellido}`;
         document.getElementById('infoSueldo').innerText = `${empleadoEncontrado.sueldo}`;
     } else {
         alert('Empleado no existe');
     }
-
-    return empleadoEncontrado;
 }
+
+function calcularYMostrarRol() {
+    const sueldo = recuperarFloatDiv('infoSueldo');
+    const descuento = recuperarFloatDiv('txtDescuentos');
+
+    if (!isNaN(descuento) && descuento >= 0 && descuento <= sueldo) {
+        const aporteIESS = calcularAporteEmpleado(sueldo);
+        const valorPagar = calcularValorPagar(sueldo, aporteIESS, descuento);
+
+        document.getElementById('infoIESS').innerText = `Aporte IESS: ${aporteIESS.toFixed(2)}`;
+        document.getElementById('infoPago').innerText = `Total a Pagar: ${valorPagar.toFixed(2)}`;
+    } else {
+        alert('Ingrese un descuento válido.');
+    }
+}
+
+function guardarRol() {
+    alert('Guardando información del rol...');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const btnBuscarRol = document.getElementById('btnBuscarRol');
+    if (btnBuscarRol) {
+        btnBuscarRol.addEventListener('click', buscarEmpleadoPorRol);
+    } else {
+        console.error('El elemento con el ID btnBuscarRol no se encontró.');
+    }
+
+});
