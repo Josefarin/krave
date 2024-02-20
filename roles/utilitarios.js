@@ -33,9 +33,8 @@ recuperarInt = function(idComponente){
 }
 
 recuperarFloat = function(idComponente){
-    let valorCaja= recuperarTexto(idComponente);
-    let valorFlotante = parseFloat(valorCaja);
-    return valorFlotante;
+    const valorCaja= recuperarTexto(idComponente);
+    return parseFloat(valorCaja);
  }
 
  function ocultarComponente(idComponente) {
@@ -248,19 +247,17 @@ function validarDescuento() {
 
 function calcularRol() {
     const sueldoStr = recuperarTextoDiv('infoSueldo');
-    const descuentoStr = recuperarTextoDiv("txtDescuentos");
+    const descuento = parseFloat(document.getElementById('txtDescuentos').value);
 
-    const sueldo = parseFloat(sueldoStr);
-    const descuento = recuperarFloat("txtDescuentos");
-
-    if (!isNaN(descuento) && descuento >= 0 && descuento <= sueldo) {
+    if (!isNaN(descuento) && descuento >= 0 && descuento <= parseFloat(sueldoStr)) {
+        const sueldo = parseFloat(sueldoStr);
         const aporteIESS = calcularAporteEmpleado(sueldo);
         const valorPagar = calcularValorPagar(sueldo, aporteIESS, descuento);
-        document.getElementById('infoIESS').innerText = `Aporte IESS: ${aporteIESS.toFixed(2)}`;
-        document.getElementById('infoPago').innerText = `Total a Pagar: ${valorPagar.toFixed(2)}`;
+        document.getElementById('infoIESS').innerText = `${aporteIESS.toFixed(2)}`;
+        document.getElementById('infoPago').innerText = `${valorPagar.toFixed(2)}`;
     } else {
         alert('Ingrese un descuento válido.');
     }
 }
 
-
+recuperarFloat
