@@ -1,4 +1,4 @@
-
+let roles = [];
 let isNuevo = false;
 
 mostrarImagen=function(idComponente,rutaImagen){
@@ -261,3 +261,73 @@ function calcularRol() {
 }
 
 recuperarFloat
+
+
+function deshabilitarBotonGuardar() {
+    document.getElementById('btnGuardarRol').disabled = true;
+}
+
+function habilitarBotonGuardar() {
+    document.getElementById('btnGuardarRol').disabled = false;
+}
+
+function buscarRol(cedula) {
+    return roles.find(rol => rol.cedula === cedula) || null;
+}
+
+function agregarRol(rol) {
+    if (!buscarRol(rol.cedula)) {
+        roles.push(rol);
+        alert('Rol agregado correctamente.');
+        return true;
+    } else {
+        alert('Ya existe un rol con la misma cédula.');
+        return false;
+    }
+}
+
+function calcularAporteEmpleador(sueldo) {
+    const porcentajeAporteEmpleador = 11.15;
+    return (porcentajeAporteEmpleador / 100) * sueldo;
+}
+function mostrarRoles() {
+    const tablaResumen = document.getElementById('tablaResumen');
+    if (tablaResumen) {
+        let tablaHTML = '<table border="1">' +
+        '<tr><th>Cédula</th><th>Nombre</th><th>Valor a Pagar</th><th>Aporte Empleado</th><th>Aporte Empleador</th></tr>' +
+        roles.map(rol =>
+            `<tr><td>${rol.cedula}</td><td>${rol.nombre}</td><td>${rol.valorAPagar.toFixed(2)}</td><td>${rol.aporteEmpleado.toFixed(2)}</td><td>${rol.aporteEmpleador.toFixed(2)}</td></tr>`
+        ).join('') +
+        '</table>';
+        tablaHTML += '<table border="1">';
+      
+            tablaHTML += '</table>';
+        tablaResumen.innerHTML = tablaHTML;
+    }
+}
+
+
+function mostrarTotalesNominas() {
+    const totalNomina = roles.reduce((total, rol) => total + rol.totalPagar, 0);
+    mostrarTextoEnCaja('infoTotalNomina', totalNomina.toFixed(2));
+}
+        
+function mostrarTotales() {
+    let totalEmpleado = 0;
+    let totalEmpleador = 0;
+    let totalPagar = 0;
+
+    roles.forEach(rol => {
+        totalEmpleado += parseFloat(rol.aporteEmpleado);
+        totalEmpleador += parseFloat(rol.aporteEmpleador);
+        totalPagar += parseFloat(rol.valorAPagar);
+    });
+
+    mostrarTexto('infoTotalPago', `Total a Pagar: ${totalPagar.toFixed(2)}`);
+    mostrarTexto('infoAporteEmpresa', `Total Aporte Empleador: ${totalEmpleador.toFixed(2)}`);
+    mostrarTexto('infoAporteEmpleado', `Total Aporte Empleado: ${totalEmpleado.toFixed(2)}`);
+    
+}
+
+
+

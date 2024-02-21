@@ -24,6 +24,7 @@ function mostrarOpcionRol() {
     ocultarComponente('divEmpleado');
     ocultarComponente('divResumen');
     mostrarComponente('divRol');
+    deshabilitarComponente('btnGuardarRol');
 }
     
 function mostrarOpcionResumen() {
@@ -98,28 +99,44 @@ function buscarEmpleadoPorRol() {
         document.getElementById('infoCedula').innerText = `${empleadoEncontrado.cedula}`;
         document.getElementById('infoNombre').innerText = `${empleadoEncontrado.nombre} ${empleadoEncontrado.apellido}`;
         document.getElementById('infoSueldo').innerText = `${empleadoEncontrado.sueldo}`;
+        habilitarComponente('btnGuardarRol');
     } else {
         alert('Empleado no existe');
+        deshabilitarComponente('btnGuardarRol');
     }
 }
 
 function calcularYMostrarRol() {
     const sueldo = recuperarFloatDiv('infoSueldo');
-    const descuento = recuperarFloatDiv('txtDescuentos');
-
-    if (!isNaN(descuento) && descuento >= 0 && descuento <= sueldo) {
+    const descuento = recuperarFloat('txtDescuentos');
+     if (!isNaN(descuento) && descuento >= 0 && descuento <= sueldo) {
         const aporteIESS = calcularAporteEmpleado(sueldo);
         const valorPagar = calcularValorPagar(sueldo, aporteIESS, descuento);
 
         document.getElementById('infoIESS').innerText = `Aporte IESS: ${aporteIESS.toFixed(2)}`;
         document.getElementById('infoPago').innerText = `Total a Pagar: ${valorPagar.toFixed(2)}`;
+        habilitarComponente('btnGuardarRol');
     } else {
         alert('Ingrese un descuento válido.');
     }
 }
 
 function guardarRol() {
-    alert('Guardando información del rol...');
+    const cedula = document.getElementById('infoCedula').innerText;
+    const nombre = document.getElementById('infoNombre').innerText;
+    const sueldo = parseFloat(document.getElementById('infoSueldo').innerText);
+    const valorAPagar = parseFloat(document.getElementById('infoPago').innerText);
+    const aporteEmpleado = parseFloat(document.getElementById('infoIESS').innerText);
+
+    const aporteEmpleador = calcularAporteEmpleador(sueldo);
+
+    const rol = { cedula, nombre, sueldo, valorAPagar, aporteEmpleado, aporteEmpleador };
+
+    agregarRol(rol);
+  
+    deshabilitarComponente('btnGuardarRol');
+    mostrarRoles();
+    mostrarTotales();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -132,4 +149,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
- 
+
+function mostrarTotales() {
+    let totalEmpleado = 0;
+    let totalEmpleador = 0;
+    let totalPagar = 0;
+
+    roles.forEach(rol => {
+        totalEmpleado += rol.aporteEmpleado;
+        totalEmpleador += rol.aporteEmpleador;
+        totalPagar += rol.valorAPagar;
+    })}
+
+    function mostrarTexto(idElemento, texto) {
+        const elemento = document.getElementById(idElemento);
+        if (elemento) {
+            elemento.innerText = texto;
+        } else {
+            console.error(`El elemento con ID ${idElemento} no se encontró.`);
+        }
+    }
+    
